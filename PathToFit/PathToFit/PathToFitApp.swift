@@ -11,7 +11,7 @@ import SwiftUI
 struct PathToFitApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            DashboardView()
         }
     }
 }

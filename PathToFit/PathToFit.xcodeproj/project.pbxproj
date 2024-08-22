@@ -8,17 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		E06D06182C728390008628CE /* PathToFitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D06172C728390008628CE /* PathToFitApp.swift */; };
-		E06D061A2C728390008628CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D06192C728390008628CE /* ContentView.swift */; };
+		E06D061A2C728390008628CE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D06192C728390008628CE /* DashboardView.swift */; };
 		E06D061C2C728392008628CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E06D061B2C728392008628CE /* Assets.xcassets */; };
 		E06D061F2C728392008628CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E06D061E2C728392008628CE /* Preview Assets.xcassets */; };
+		E06D06262C77D54B008628CE /* HealthDataListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D06252C77D54B008628CE /* HealthDataListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E06D06142C728390008628CE /* PathToFit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PathToFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E06D06172C728390008628CE /* PathToFitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathToFitApp.swift; sourceTree = "<group>"; };
-		E06D06192C728390008628CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E06D06192C728390008628CE /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		E06D061B2C728392008628CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E06D061E2C728392008628CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E06D06252C77D54B008628CE /* HealthDataListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +54,8 @@
 			isa = PBXGroup;
 			children = (
 				E06D06172C728390008628CE /* PathToFitApp.swift */,
-				E06D06192C728390008628CE /* ContentView.swift */,
+				E06D06192C728390008628CE /* DashboardView.swift */,
+				E06D06252C77D54B008628CE /* HealthDataListView.swift */,
 				E06D061B2C728392008628CE /* Assets.xcassets */,
 				E06D061D2C728392008628CE /* Preview Content */,
 			);
@@ -137,7 +140,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E06D061A2C728390008628CE /* ContentView.swift in Sources */,
+				E06D06262C77D54B008628CE /* HealthDataListView.swift in Sources */,
+				E06D061A2C728390008628CE /* DashboardView.swift in Sources */,
 				E06D06182C728390008628CE /* PathToFitApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
