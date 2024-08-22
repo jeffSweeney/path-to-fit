@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  DashboardView.swift
 //  PathToFit
 //
 //  Created by Jeffrey Sweeney on 8/18/24.
@@ -32,7 +32,7 @@ enum HealthMetricContext: CaseIterable, Identifiable {
     }
 }
 
-struct ContentView: View {
+struct DashboardView: View {
     @State private var selectedStat: HealthMetricContext = .steps
     
     var body: some View {
@@ -70,7 +70,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    DashboardView()
 }
 
 // MARK: - Extracted subviews - cleanup and refactor later.
