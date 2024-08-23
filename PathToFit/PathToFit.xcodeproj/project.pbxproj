@@ -12,6 +12,7 @@
 		E06D061C2C728392008628CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E06D061B2C728392008628CE /* Assets.xcassets */; };
 		E06D061F2C728392008628CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E06D061E2C728392008628CE /* Preview Assets.xcassets */; };
 		E06D06262C77D54B008628CE /* HealthDataListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D06252C77D54B008628CE /* HealthDataListView.swift */; };
+		E06D06282C780AE8008628CE /* HKPermissionPrimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D06272C780AE8008628CE /* HKPermissionPrimingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		E06D061B2C728392008628CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E06D061E2C728392008628CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E06D06252C77D54B008628CE /* HealthDataListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataListView.swift; sourceTree = "<group>"; };
+		E06D06272C780AE8008628CE /* HKPermissionPrimingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKPermissionPrimingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				E06D06252C77D54B008628CE /* HealthDataListView.swift */,
 				E06D061B2C728392008628CE /* Assets.xcassets */,
 				E06D061D2C728392008628CE /* Preview Content */,
+				E06D06272C780AE8008628CE /* HKPermissionPrimingView.swift */,
 			);
 			path = PathToFit;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E06D06262C77D54B008628CE /* HealthDataListView.swift in Sources */,
+				E06D06282C780AE8008628CE /* HKPermissionPrimingView.swift in Sources */,
 				E06D061A2C728390008628CE /* DashboardView.swift in Sources */,
 				E06D06182C728390008628CE /* PathToFitApp.swift in Sources */,
 			);
