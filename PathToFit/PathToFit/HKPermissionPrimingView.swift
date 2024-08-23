@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import HealthKitUI
 
 struct HKPermissionPrimingView: View {
+    @Environment(HKManager.self) private var hkManager
+    @Environment(\.dismiss) private var dismiss
+    @State private var isShowingHKPermissions = false
+    
     var body: some View {
         VStack(spacing: 130) {
             VStack(alignment: .leading, spacing: 12) {
@@ -26,12 +31,25 @@ struct HKPermissionPrimingView: View {
             }
             
             Button("Connect Apple Health") {
-                
+                isShowingHKPermissions = true
             }
             .buttonStyle(.borderedProminent)
             .tint(.pink)
         }
         .padding(30)
+        .healthDataAccessRequest(store: hkManager.store,
+                                 shareTypes: hkManager.types,
+                                 readTypes: hkManager.types,
+                                 trigger: isShowingHKPermissions) { result in
+            switch result {
+            case .success:
+                dismiss()
+            case .failure:
+                // TODO: - Handle error
+                dismiss()
+            }
+        }
+        
     }
 }
 
@@ -47,4 +65,5 @@ extension HKPermissionPrimingView {
 
 #Preview {
     HKPermissionPrimingView()
+        .environment(HKManager())
 }
