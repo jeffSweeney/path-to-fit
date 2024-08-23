@@ -12,6 +12,7 @@ struct HKPermissionPrimingView: View {
     @Environment(HKManager.self) private var hkManager
     @Environment(\.dismiss) private var dismiss
     @State private var isShowingHKPermissions = false
+    @Binding var hasSeen: Bool
     
     var body: some View {
         VStack(spacing: 130) {
@@ -37,6 +38,7 @@ struct HKPermissionPrimingView: View {
             .tint(.pink)
         }
         .padding(30)
+        .onAppear { hasSeen = true }
         .healthDataAccessRequest(store: hkManager.store,
                                  shareTypes: hkManager.types,
                                  readTypes: hkManager.types,
@@ -64,6 +66,6 @@ extension HKPermissionPrimingView {
 }
 
 #Preview {
-    HKPermissionPrimingView()
+    HKPermissionPrimingView(hasSeen: .constant(true))
         .environment(HKManager())
 }
