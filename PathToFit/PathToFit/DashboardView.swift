@@ -81,6 +81,7 @@ struct DashboardView: View {
 
 #Preview {
     DashboardView()
+        .environment(HKManager())
 }
 
 // MARK: - Extracted subviews - cleanup and refactor later.
