@@ -15,38 +15,50 @@ class HKManager {
     
     let types: Set = [HKQuantityType(.stepCount), HKQuantityType(.bodyMass)]
     
-    func fetchStepCount() async {
+    private func fetchHKData(_ metric: HealthMetricContext) async {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: .now)
         let endDate = calendar.date(byAdding: .day, value: 1, to: today)!
         let startDate = calendar.date(byAdding: .day, value: -28, to: endDate)
         
         let queryPredicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-        let samplePredicate = HKSamplePredicate.quantitySample(type: HKQuantityType(.stepCount), predicate: queryPredicate)
+        let samplePredicate = HKSamplePredicate.quantitySample(type: HKQuantityType(metric.quantityTypeId), predicate: queryPredicate)
         
-        let stepsQuery = HKStatisticsCollectionQueryDescriptor(predicate: samplePredicate,
-                                                               options: .cumulativeSum, 
-                                                               anchorDate: endDate,
-                                                               intervalComponents: .init(day: 1))
+        let query = HKStatisticsCollectionQueryDescriptor(predicate: samplePredicate,
+                                                          options: metric.statsOption,
+                                                          anchorDate: endDate,
+                                                          intervalComponents: .init(day: 1))
         
-        let stepCount = try! await stepsQuery.result(for: store)
+        let data = try! await query.result(for: store)
+    }
+    
+    func fetchStepCount() async {
+        await fetchHKData(.steps)
     }
     
     func fetchWeights() async {
-        let calendar = Calendar.current
-        let today = calendar.startOfDay(for: .now)
-        let endDate = calendar.date(byAdding: .day, value: 1, to: today)!
-        let startDate = calendar.date(byAdding: .day, value: -28, to: endDate)
-        
-        let queryPredicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-        let samplePredicate = HKSamplePredicate.quantitySample(type: HKQuantityType(.bodyMass), predicate: queryPredicate)
-        
-        let weightQuery = HKStatisticsCollectionQueryDescriptor(predicate: samplePredicate,
-                                                                options: .mostRecent,
-                                                                anchorDate: endDate,
-                                                                intervalComponents: .init(day: 1))
-        
-        let weightCount = try! await weightQuery.result(for: store)
+        await fetchHKData(.weight)
+    }
+}
+
+// MARK: - Internal Metric Context
+private extension HealthMetricContext {
+    var statsOption: HKStatisticsOptions {
+        switch self {
+        case .steps:
+            return .cumulativeSum
+        case .weight:
+            return .mostRecent
+        }
+    }
+    
+    var quantityTypeId: HKQuantityTypeIdentifier {
+        switch self {
+        case .steps:
+            return .stepCount
+        case .weight:
+            return .bodyMass
+        }
     }
 }
 
