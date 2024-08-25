@@ -5,6 +5,7 @@
 //  Created by Jeffrey Sweeney on 8/18/24.
 //
 
+import Charts
 import SwiftUI
 
 enum HealthMetricContext: CaseIterable, Identifiable {
@@ -52,21 +53,72 @@ struct DashboardView: View {
                     .pickerStyle(.segmented)
                     
                     // MARK: - Steps Card
-                    NavigationLink(value: selectedStat) {
-                        StepsCard()
-                    }
-                    .foregroundStyle(.secondary)
+                    VStack {
+                        NavigationLink(value: selectedStat) {
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Label("Steps", systemImage: "figure.walk")
+                                        .font(.title3)
+                                        .bold()
+                                        .foregroundStyle(.pink)
+                                    
+                                    Text("Avg: 10k Steps")
+                                        .font(.caption)
+                                }
+                                
+                                Spacer()
+                                
+                                Image(systemName: "chevron.right")
+                            }
+                        }
+                        .foregroundStyle(.secondary)
+                        .padding(.bottom, 12)
                         
+                        Chart {
+                            ForEach(hkManager.stepData) { steps in
+                                BarMark(x: .value("Date", steps.date, unit: .day),
+                                        y: .value("Steps", steps.value))
+                            }
+                        }
+                        .foregroundStyle(.pink)
+                        .frame(height: 150)
+                    }
+                    .padding()
+                    .background {
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(Color(.secondarySystemBackground))
+                    }
                     
                     // MARK: - Averages Card
-                    AveragesCard()
+                    VStack(alignment: .leading) {
+                        VStack(alignment: .leading) {
+                            Label("Averages", systemImage: "calendar")
+                                .font(.title3)
+                                .bold()
+                                .foregroundStyle(.pink)
+                            
+                            Text("Last 28 Days")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(.bottom, 12)
+                        
+                        RoundedRectangle(cornerRadius: 12)
+                            .foregroundStyle(.secondary)
+                            .frame(height: 240)
+                    }
+                    .padding()
+                    .background {
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(Color(.secondarySystemBackground))
+                    }
                 }
             }
             .padding()
             .task {
 //                await hkManager.addSimData()
                 await hkManager.fetchStepCount()
-                await hkManager.fetchWeights()
+//                await hkManager.fetchWeights()
                 showingPermissionPrimingSheet = !hasSeenPermissionPriming
             }
             .navigationTitle("Dashboard")
@@ -86,64 +138,4 @@ struct DashboardView: View {
 #Preview {
     DashboardView()
         .environment(HKManager())
-}
-
-// MARK: - Extracted subviews - cleanup and refactor later.
-
-struct StepsCard: View {
-    var body: some View {
-        VStack {
-            HStack {
-                VStack(alignment: .leading) {
-                    Label("Steps", systemImage: "figure.walk")
-                        .font(.title3)
-                        .bold()
-                        .foregroundStyle(.pink)
-                    
-                    Text("Avg: 10k Steps")
-                        .font(.caption)
-                }
-                
-                Spacer()
-                
-                Image(systemName: "chevron.right")
-            }
-            .padding(.bottom, 12)
-            
-            RoundedRectangle(cornerRadius: 12)
-                .frame(height: 150)
-        }
-        .padding()
-        .background {
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color(.secondarySystemBackground))
-        }
-    }
-}
-
-struct AveragesCard: View {
-    var body: some View {
-        VStack(alignment: .leading) {
-            VStack(alignment: .leading) {
-                Label("Averages", systemImage: "calendar")
-                    .font(.title3)
-                    .bold()
-                    .foregroundStyle(.pink)
-                
-                Text("Last 28 Days")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-            .padding(.bottom, 12)
-            
-            RoundedRectangle(cornerRadius: 12)
-                .foregroundStyle(.secondary)
-                .frame(height: 240)
-        }
-        .padding()
-        .background {
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color(.secondarySystemBackground))
-        }
-    }
 }

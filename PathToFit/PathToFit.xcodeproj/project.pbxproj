@@ -14,6 +14,7 @@
 		E06D06262C77D54B008628CE /* HealthDataListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D06252C77D54B008628CE /* HealthDataListView.swift */; };
 		E06D06282C780AE8008628CE /* HKPermissionPrimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D06272C780AE8008628CE /* HKPermissionPrimingView.swift */; };
 		E06D062B2C78E8B1008628CE /* HKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D062A2C78E8B1008628CE /* HKManager.swift */; };
+		E06D062D2C7BA9DA008628CE /* HealthMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D062C2C7BA9DA008628CE /* HealthMetric.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		E06D06272C780AE8008628CE /* HKPermissionPrimingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKPermissionPrimingView.swift; sourceTree = "<group>"; };
 		E06D06292C78E612008628CE /* PathToFit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PathToFit.entitlements; sourceTree = "<group>"; };
 		E06D062A2C78E8B1008628CE /* HKManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKManager.swift; sourceTree = "<group>"; };
+		E06D062C2C7BA9DA008628CE /* HealthMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthMetric.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				E06D06292C78E612008628CE /* PathToFit.entitlements */,
 				E06D06192C728390008628CE /* DashboardView.swift */,
 				E06D06252C77D54B008628CE /* HealthDataListView.swift */,
+				E06D062C2C7BA9DA008628CE /* HealthMetric.swift */,
 				E06D062A2C78E8B1008628CE /* HKManager.swift */,
 				E06D06272C780AE8008628CE /* HKPermissionPrimingView.swift */,
 				E06D06172C728390008628CE /* PathToFitApp.swift */,
@@ -153,6 +156,7 @@
 				E06D061A2C728390008628CE /* DashboardView.swift in Sources */,
 				E06D062B2C78E8B1008628CE /* HKManager.swift in Sources */,
 				E06D06182C728390008628CE /* PathToFitApp.swift in Sources */,
+				E06D062D2C7BA9DA008628CE /* HealthMetric.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

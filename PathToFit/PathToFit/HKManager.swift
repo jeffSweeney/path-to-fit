@@ -12,8 +12,10 @@ import Observation
 @Observable 
 class HKManager {
     let store = HKHealthStore()
-    
     let types: Set = [HKQuantityType(.stepCount), HKQuantityType(.bodyMass)]
+    
+    var stepData: [HealthMetric] = []
+    var weightData: [HealthMetric] = []
     
     private func fetchHKData(_ metric: HealthMetricContext) async {
         let calendar = Calendar.current
@@ -29,7 +31,15 @@ class HKManager {
                                                           anchorDate: endDate,
                                                           intervalComponents: .init(day: 1))
         
-        let data = try! await query.result(for: store)
+        let statsCollection = try! await query.result(for: store)
+        let metricData = metric.generateHealthMetrics(from: statsCollection)
+
+        switch metric {
+        case .steps:
+            stepData = metricData
+        case .weight:
+            weightData = metricData
+        }
     }
     
     func fetchStepCount() async {
@@ -58,6 +68,21 @@ private extension HealthMetricContext {
             return .stepCount
         case .weight:
             return .bodyMass
+        }
+    }
+    
+    func generateHealthMetrics(from stats: HKStatisticsCollection) -> [HealthMetric] {
+        return stats.statistics().map { stat in
+                .init(date: stat.startDate, value: getMetricValue(from: stat))
+        }
+    }
+    
+    private func getMetricValue(from stat: HKStatistics) -> Double {
+        switch self {
+        case .steps:
+            return stat.sumQuantity()?.doubleValue(for: .count()) ?? 0
+        case .weight:
+            return stat.mostRecentQuantity()?.doubleValue(for: .pound()) ?? 0
         }
     }
 }
